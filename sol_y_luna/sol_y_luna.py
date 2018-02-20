@@ -5,6 +5,7 @@ class Tabletop:
 		self.table=[]
 		self.iteration=0
 		self.n_elem=int(_n_elem)
+		self.finished_table=[]
 		#asignation of default values
 		for i in range(0,(self.n_elem*2)+1):
 			if i<self.n_elem:
@@ -13,6 +14,10 @@ class Tabletop:
 				self.table.append(EMPTY)
 			else:
 				self.table.append(SUN)
+
+		self.finished_table=self.table[::-1]
+		print (self.table)
+		print (self.finished_table)
 
 	def print_table(self):
 		for i in range(0,(self.n_elem*2)+1):
@@ -27,6 +32,12 @@ class Tabletop:
 			sys.stdout.write("‾‾‾‾")
 		sys.stdout.write("\n")
 		return
+
+	def is_finished(self):
+		if (list(self.table)==list(self.finished_table)):
+			return True
+		else:
+			return False
 
 	def move_sun(self):
 		print("searching...")
@@ -44,14 +55,17 @@ class Tabletop:
 				self.table[y]=aux
 				#end swap :(
 				self.iteration+=1
-				return True
+				if self.is_finished():
+					return False
+				else:
+					return True
 		print("nope...")
 		return False
 
 	def move_shadow(self):
 		print("searching...")
 		for i in range(0,(self.n_elem*2)):
-			if self.table[i]==SHADOW and (self.table[i+1]==EMPTY or (self.table[i+2]==EMPTY and self.table[i+1]==SUN)):
+			if (self.table[i]==SHADOW and ((self.table[i+1]==EMPTY) or (self.table[i+2]==EMPTY and self.table[i+1]==SUN))):
 				print("bingo!!")
 				x=i
 				if self.table[i+2]==EMPTY:
@@ -64,9 +78,13 @@ class Tabletop:
 				self.table[y]=aux
 				#end swap :(
 				self.iteration+=1
-				return True
+				if self.is_finished():
+					return False
+				else:
+					return True
 		print("nope...")
 		return False
+
 
 	def solve(self):
 		if self.n_elem==1:
@@ -81,39 +99,38 @@ class Tabletop:
 		else:
 			self.print_table()
 			solved=False
-			if not self.move_shadow():
-				return
+			if not (self.move_shadow()):
+				self.print_table()
+				return 0
 			else:
 				self.print_table()
 				while not solved:
-					try:
-						self.move_sun()
-					except:
-						print("\tfinished!")
-						return
-					self.print_table()
 
-					try:
-						self.move_sun()
-					except:
-						print("\tfinished!")
-						return
-					self.print_table()
-					try:
-						self.move_shadow()
-					except:
-						print("\tfinished!")
-						return
-					self.print_table()
+					if not (self.move_sun()):
+						self.print_table()
+						return 0
+					else:
+						self.print_table()
 
-					try:
-						self.move_shadow()
-					except:
-						print("\tfinished!")
-						return
-					self.print_table()
+					if not (self.move_sun()):
+						self.print_table()
+						return 0
+					else:
+						self.print_table()
 
-				return
+					if not (self.move_shadow()):
+						self.print_table()
+						return 0
+					else:
+						self.print_table()
+
+					if not (self.move_shadow()):
+						self.print_table()
+						return 0
+					else:
+						self.print_table()
+
+			pass
 
 def main():
 	#checks the argument
@@ -122,18 +139,18 @@ def main():
 		print("sol_y_luna.py <n_elem [1/2]>")
 		return
 
-	n_elem=str(sys.argv[1])
-
-	if int(n_elem)<1 or int(n_elem)>2:
+	if int(sys.argv[1])<1 or int(sys.argv[1])>2:
 		print("\tinvalid number of elements! enter 1 or 2 elements\n")
 		return
 
 	greeting="\tThis program solves the sun and shadow game.\n \tThis is the initial tabletop"
 	print(greeting)
 
-	tabletop=Tabletop(n_elem)
+	tabletop=Tabletop(int(sys.argv[1]))
 	tabletop.solve()
-	return
+	print ("finished!!!\n")
+
+	return 0
 
 if __name__ == "__main__":
 	EMPTY= " "
