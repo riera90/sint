@@ -26,3 +26,10 @@
 	(printout t "inserting: " ?var1 crlf)
 	(assert (all_datos $?var2 ?var1))
 )
+
+(defrule print-data
+	(print-data)
+	(all_datos $?data)
+	=>
+	(printout t "data: " $?data crlf)
+)
