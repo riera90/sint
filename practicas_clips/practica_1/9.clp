@@ -4,10 +4,11 @@
 	(dato azul)
 	(dato "saludos")
 	(new)
+	(all_datos)
 )
 
 
-(defrule init
+(defrule init_
 	(new)
 	?f1 <- (new)
 	=>
@@ -17,8 +18,11 @@
 )
 
 (defrule recopilar-datos
-	($?f2 $?f1)
+	?f1 <- (dato ?var1)
+	?f2 <- (all_datos $?var2)
 	=>
-	(assert (todos-los-datos $?f1))
-	(printout t "datos: " $?f1 crlf)
+	(retract ?f1)
+	(retract ?f2)
+	(printout t "inserting: " ?var1 crlf)
+	(assert (all_datos $?var2 ?var1))
 )
