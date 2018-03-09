@@ -1,0 +1,129 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{dirtree}
+\usepackage{listings}
+\usepackage{ amssymb }
+\usepackage{ textcomp }
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\title{Lógica proposicional\\(5ª semana)}
+\begin{document}
+\maketitle
+\pagebreak
+\graphicspath{/mnt/data_1/code/asignaturas/sint/practicas/pr4}
+
+
+\section{ejercicio 8.6}
+\subsection{enunciado}
+epresent the following  sentences in first-order logic,  using  a  consistent  vocabulary (which you must define):
+\begin{enumerate}
+	\item Some students took French in spring 2001.
+	\item Every student who takes French passes it.
+	\item Only one student took Greek in spring 2001.
+	\item The best score in Greek is always higher than the best score in French.
+	\item Every person who buys a policy is smart.
+	\item No person buys an expensive policy.
+	\item There is an agent who sells policies only to people who are not insured.
+	\item There is a barber who shaves all men in town who do not shave themselves.
+	\item A person born in the UK, each of whose parents is a IJK citizen or a UK resident, is a UK citizen by birth.
+	\item A person born outside the UK, one of whose parents is a UK citizen by, acitizen by descent.
+	\item Politicians can fool some of the people all of time, they can fool all of people some of the time, but they can't fool all of the people all
+	of the time.
+\end{enumerate}
+\subsection{resolución}
+\begin{enumerate}
+	\item $\exists$ s isStudent(s) $\rightarrow$ $\exists$ c tookClases(s,c) : where c is french
+	\item $\forall$ s isStudent(s) $\land$ $\exists$ c tookClases(s,c) $\rightarrow$ $\exists$ c passClass(s,c) : where c is french
+	\item $\exists$ s isStudent(s) $\land$ $\exists$ g tookClass(s, g) $\rightarrow$ $\exists!$ study(s, g) : where s is student and g is Greek
+	\item $\forall$ c isCalificationOfGreek(g) $\land$ $\forall$ f isCalificationOfFrench(f) $\rightarrow$ isHigher(g,f) : where the functions evaluates if param1 $\gg$ param2
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ l isPolicy(l) $\rightarrow$ $\forall$ buys(p, l) $\rightarrow$ isWhise(p)
+	\item $\nexists$ p isPerson(p) $\land$ $\exists$ l isPolicy(l) $\rightarrow$ buys(p, l)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ a isAgent(a) $\land$ $\exists$ l isPolicy(l) $\rightarrow$ buys(a, l) $\land$ buysTo(a,p)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ b isBarber(b) $\land$ $\exists$ t isTown(t) $\rightarrow$ dontShaveHimself(p) $\land$ isSaidTown(t) $\rightarrow$ shaves(b, p)
+	\item $\exists$ p1 isPerson(p1) $\land$ $\exists$ p1 isPerson(p1) $\land$ $\exists$ s isPerson(s) $\rightarrow$ bornInUK(p1) $\land$ bornInIJK(p2) $\land$ bornInUK(s) $\rightarrow$ haveUKNationality(s)
+	\item $\exists$ p1 isPerson(p1) $\land$ $\exists$ p1 isPerson(p1) $\land$ $\exists$ s isPerson(s) $\rightarrow$ bornInUK(p1) $\land$ bornInUK(p2) $\land$ notBornInUK(p1) $\rightarrow$ haveUKNationality(s)
+	\item $\exists$ Po isPolitician(po) $\land$ $\exists$ Pe isPerson(pe) $\land$ $\forall$ All isPerson(all) $\rightarrow$ ( foolAllOfTheTime(po, pe) $\lor$ foolSomeOfTheTime(po, all) ) $\land$ $\lnot$ foolAllOfTheTime(po, all)
+\end{enumerate}
+
+\section{ejercicio 8.7}
+\subsection{enunciado}
+peresent the sentence " All Germans speak the same languages " in predicate calculus. Use Speaks (x, 1) , meaning that person x speaks language 1.
+\subsection{resolución}
+$\exists$ x isPerson(x) $\rightarrow$ isGerman(x) $\land$ speaks(x, 1)
+
+\section{ejercicio 8.8}
+\subsection{enunciado}
+hat axiom is needed to infer the fact Female(L,aura;i given the facts Male( Jim) and Spouse( Jim, Laura)?
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\section{ejercicio 8.9}
+\subsection{enunciado}
+Write a  general  set of facts  and  axioms to represent ithe assertion " Wellington heard about  Napoleon's  death " and  to  correctly  answer  the ques.tion " Did Napoleon  hear  about Wellington's death? "
+\subsection{resolución}
+$\exists$ Napoleon $\land$ $\exists$ Wellingtong $\rightarrow$ heardAbowtTheDeathOf(Wellington, Napoleon)
+\\\tab answer: yes
+
+\pagebreak
+
+\section{ejercicio 8.10}
+\subsection{enunciado}
+Rewrite the propositional wumpus world facts from Section 7.5 into first - order logic. How much more compact is this version?
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\section{ejercicio 8.10}
+\subsection{enunciado}
+Write axioms  describing  the  predicates Grandchild, GreatGrandparent, Brother, Sister, Daughter, Son,  Aunt, Uncle, BrotherInLaw, SisterInLaw, and Firstcousin. Find  out  the  proper  definition of nzth cousin n times  removed,  and  write  the  definition in first - order logic. Now write down the basic facts depicted in the family tree in Figure 8.5. Using a suit - able logical  reasoning  system, T E L L it all the  sentences you have written down,  and A S K it who are Elizabeth's  grandchildren, Diana's  brothers - in - law, and Zara's  great - grandparents.
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\section{ejercicio 8.11}
+\subsection{enunciado}
+Write down a sentence asserting that + is a commutative function. Does your sentence follow from the Peano axioms? If so, explain why; if not, give a model in which the axioms are true and your sentence is false.
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\pagebreak
+
+\section{ejercicio}
+\subsection{enunciado}
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\section{ejercicio}
+\subsection{enunciado}
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+\section{ejercicio}
+\subsection{enunciado}
+\subsection{resolución}
+-------------todo!!
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+\vspace*{\fill}
+\raggedleft Documento escrito en \LaTeX{}
+\end{document}
