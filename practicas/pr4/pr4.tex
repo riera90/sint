@@ -54,12 +54,9 @@ $\exists$ x isPerson(x) $\rightarrow$ isGerman(x) $\land$ speaks(x, 1)
 
 \section{ejercicio 8.8}
 \subsection{enunciado}
-hat axiom is needed to infer the fact Female(L,aura;i given the facts Male( Jim) and Spouse( Jim, Laura)?
+What axiom is needed to infer the fact Female(Laura) is given the facts Male(Jim) and Spouse(Jim, Laura)?
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+$\exists$ Laura $\land$ $\exists$ Jim Spouse(Jim, Laura) $\rightarrow$ isFemale(Laura) $\land$ isMale(Jim)
 
 \section{ejercicio 8.9}
 \subsection{enunciado}
@@ -74,54 +71,81 @@ $\exists$ Napoleon $\land$ $\exists$ Wellingtong $\rightarrow$ heardAbowtTheDeat
 \subsection{enunciado}
 Rewrite the propositional wumpus world facts from Section 7.5 into first - order logic. How much more compact is this version?
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+No he encontrado a que hace referencia
 
 \section{ejercicio 8.10}
 \subsection{enunciado}
 Write axioms  describing  the  predicates Grandchild, GreatGrandparent, Brother, Sister, Daughter, Son,  Aunt, Uncle, BrotherInLaw, SisterInLaw, and Firstcousin. Find  out  the  proper  definition of nzth cousin n times  removed,  and  write  the  definition in first - order logic. Now write down the basic facts depicted in the family tree in Figure 8.5. Using a suit - able logical  reasoning  system, T E L L it all the  sentences you have written down,  and A S K it who are Elizabeth's  grandchildren, Diana's  brothers - in - law, and Zara's  great - grandparents.
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+( $\exists$ (George, Mum)
+$\land$ $\exists$ (Spencer, Kydd, Elizabeth, Philip, Margatet)
+$\land$ $\exists$ (Diana, Charles, Anne, Mark, Andrew, Sharah, Edward)
+$\land$ $\exists$ (William, Harry, Peter, Zara, Beatrice, Eugenie) )\\
+$\land$ $\forall$ (x, y, y') sonOf(x, y, y') $\rightarrow$ ( isPerson(x) $\land$ isPerson(y) $\land$ isPerson(y') $\land$ isParent(y) $\land$ isParent(y')) $\land$ isSon(x))\\
+$\rightarrow$\\
+( isSon(Elizabeth, george, Mun) $\land$ isSon(Margatet, george, Mun))\\
+$\land$
+( isSon(Diana, Spencer, Kydd) $\land$ isSon(Charles, Elizabeth, Philip)\\ $\land$ isSon(Andrew, Elizabeth, Philip) $\land$ isSon(Edward, Elizabeth, Philip) )\\
+$\land$ (isSon(William, Diana, Charles) $\land$ isSon(Harry, Diana, Charles) $\land$ isSon(Peter, Annie, Mark) $\land$ isSon(Zara, Annie, Mark) $\land$ isSon(Beatrice, Beatrice, Eugenie) $\land$ isSon(Eugenie, Beatrice, Eugenie) )
 
 \section{ejercicio 8.11}
 \subsection{enunciado}
 Write down a sentence asserting that + is a commutative function. Does your sentence follow from the Peano axioms? If so, explain why; if not, give a model in which the axioms are true and your sentence is false.
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 \pagebreak
 
-\section{ejercicio}
+\section{ejercicio 1}
+Obtén la forma normal clausulada de las siguientes fórmulas:
 \subsection{enunciado}
+\begin{enumerate}
+	\item (p $\land$ q) $\lor$ (r $\land$ s)
+	\item (p $\land$ q) $\rightarrow$ r
+	\item (p $\land$ q) $\oplus$ r
+	\item ($\neg$(p $\land$ $\neg$q) $\lor$ r] $\rightarrow$ [(p  $\land$ $\neg$r) $\lor$ q]
+	\item (p $\land$ q) $\rightarrow$ r] $\iff$ [(p $\land$ $\neg$r)  $\rightarrow$ $\neg$ q]
+
+\end{enumerate}
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+\begin{enumerate}
+	\item (p $\land$ q) $\lor$ (r $\land$ s)
+	\item $\neg$(p $\land$ q) $\lor$ r
+	\item ((p $\land$ q) $\land$ r) $\lor$ $\neg$(p $\land$ q) $\land$ $\neg$r
+	\item $\neg$[$\neg$(p $\land$ $\neg$q) $\lor$ r] $\lor$ [(p  $\land$ $\neg$r) $\lor$ q]
+	\item .[$\neg$[$\neg$(p $\land$ q) $\lor$ r] $\lor$ [$\neg$(p $\land$ $\neg$r)  $\lor$ $\neg$ q] ] $\land$ [ $\neg$ [$\neg$(p $\land$ $\neg$r)  $\lor$ $\neg$ q] $\lor$ [$\neg$(p $\land$ q) $\lor$ r] ]
+\end{enumerate}
 
 \section{ejercicio}
 \subsection{enunciado}
+Representa los siguiente hechos con lógica de predicados:
+\begin{enumerate}
+	\item Algunas plantas no tienen flores
+	\item Cualquier edificio es habitable
+	\item No hay delito sin causa
+	\item Algunas personas son insoportables
+	\item Existen personas que no comen carne
+	\item No es oro todo lo que reluce
+	\item Ningún asesino es bondadoso
+	\item El que estudia, aprueba
+	\item No todos los animales son racionales
+	\item Existen personas que aman a todo el mundo
+	\item No es verdad que todas las personas no amen a todo el mundo
+\end{enumerate}
 \subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-\section{ejercicio}
-\subsection{enunciado}
-\subsection{resolución}
--------------todo!!
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-%todo!!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+\begin{enumerate}
+	\item $\exists$ Plant esPlanta(Plant) $\rightarrow$ haveNoFlower(Plant)
+	\item $\forall$ Edificio esEdificio(Edificio) $\rightarrow$ esHabitable(Edificio)
+	\item $\forall$ Delito esDelito(Delito) $\rightarrow$ conCausa(Delito)
+	\item $\exists$ Persona esPersona(Persona) $\rightarrow$ esInsoportable(Persona)
+	\item $\exists$ Persona esPersona(Persona) $\rightarrow$ $\neg$ comeCarne(Persona)
+	\item $\exists$ objeto esBrillante(objeto) $\rightarrow$ $\neg$ esOro(objeto)
+	\item $\forall$ Asesino Es persona(Asesino) $\land$ Asesino(Asesino) $\rightarrow$ $\neg$ esBondadoso(Asesino)
+	\item $\forall$ Persona esPerosna() $\land$ estudia(persona) $\rightarrow$ aprueba(Persona)
+	\item $\exists$ Animal esAnimal(Animal) $\rightarrow$ $\neg$ esRacional(Animal)
+	\item $\exists$ Persona sPersona(Perosna) $\land$ $\forall$ Mundo esPersona(Mundo) $\rightarrow$ amar(Persona, Mundo)
+	\item $\neg$$\forall$ Persona siPersona(Persona) $\land$ $\forall$ Mundo esPersona(Mundo) $\rightarrow$ $\neg$ amar(Persona, Mundo)
+\end{enumerate}
 
 
 \vspace*{\fill}
