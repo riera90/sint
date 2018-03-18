@@ -1,0 +1,67 @@
+(deftemplate emp
+	(slot enum)
+	(slot enom)
+	(slot jefe)
+	(slot sal)
+	(slot dnum)
+)
+
+(deftemplate emp-aux
+	(slot enum)
+	(slot sal)
+)
+
+(defrule crea-aux
+	(emp(enum ?nu)(sal ?s))
+	=>
+	(assert(emp-aux(enum ?nu)(sal ?s)))
+)
+
+(defrule iniciar-parejas
+	(forall (emp (enum ?nu))
+					(emp-aux (enum ?nu))
+	)
+	=>
+	(assert(fase-parejas))
+)
+
+(defrule pareja
+	(fase-parejas)
+	?e1 <- (emp-aux(enum ?nu1)(sal ?max))
+	?e2 <- (emp-aux(enum ?nu2&~?nu1)(sal ?max))
+
+	(not
+		(emp-aux (sal ?s&:(> ?s ?max)))
+	)
+	(not
+		(emp-aux (sal ?s&:(< ?s ?min)))
+	)
+	=>
+	(assert (pareja ?nu1 ?nu2))
+	(retract ?e1 ?e2)
+
+)
+
+(defrule arbitro
+	(fase-parejas)
+	?e1 <- (emp-aux (enum ?nu))
+	(not (emp-aux (enum ~?nu)))
+	=>
+	(retract (?e1))
+	(assert arbitro ?nu)
+)
+
+(defrule imprimir-pareja
+	(pareja ?nu1 ?nu2)
+	(emp (enum ?nu1)(enom ?nom1))
+	(emp (enum ?nu2)(enom ?nom2))
+	=>
+	(printout t ?non1" ("?nu1") va a competir contra "?nom2" ("?nu1")" clrf)
+
+)
+
+
+(deffacts empleados
+	(emp (enum 1)(enom juan)(jefe 100)(sal 1000)(dnum 100))
+	(emp (enum 2)(enom pepe)(jefe 100)(sal 2000)(dnum 100))
+)

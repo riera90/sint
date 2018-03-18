@@ -1,5 +1,6 @@
 **/*.aux
 **/*.log
 **/*.out
+**/*.toc
 **/plantilla
 **/latex_refresh.sh
