@@ -113,14 +113,52 @@ Expresa   en   sentencias   de   lógica   de   predicados   las   siguientes   
 		\item habla(ingles, Ingles) $\land$ habla(Español, Español) $\land$ $\lnot$habla(Español, ingles)
 	\end{itemize}
 	\item Ningún mamífero tiene sangre fría. Los peces tienen sangre fría. Los peces viven en el agua ynadan. Algunos mamíferos viven en el agua y nadan. Las ballenas tienen sangre caliente. Portanto, las ballenas son mamíferos.
-
+	\begin{itemize}
+		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena ( sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) ) $\land$ ( vivir(mamifero2, Agua) $\land$ nada(mamifero2) ) $\land$ ( $\lnot$sangreFria(ballena) ) $\rightarrow$ mamirefo(ballena)
+		\item simplificando a la forma normal:
+		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
+		$\lnot$(( sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) ) $\land$ ( vivir(mamifero2, Agua) $\land$ nada(mamifero2) ) $\land$ ( $\lnot$sangreFria(ballena) )) $\lor$ mamirefo(ballena)
+		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
+		( $\lnot$sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
+		$\lor$ ( sangreFria(ballena) ))\\
+		$\lor$ mamirefo(ballena)\\
+		\item $\forall$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
+		( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
+		$\lor$ ( sangreFria(ballena) ))\\
+		$\lor$ mamirefo(ballena)\\
+		\item ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
+		$\lor$ ( sangreFria(ballena) ))\\
+		$\lor$ mamirefo(ballena)\\
+		\item ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\lor$ ($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
+		$\lor$ ( sangreFria(ballena) ))\\
+		$\lor$ mamirefo(ballena)\\
+		\item Aplicamos reducción a lo absurdo.
+		\item $\lnot$( ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\lor$ ($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
+		$\lor$ ( sangreFria(ballena) ))\\
+		$\lor$ mamirefo(ballena) )\\
+		\item $\lnot$( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
+		$\land$ $\lnot$($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
+		$\land$ $\lnot$( sangreFria(ballena) ))\\
+		$\land$ $\lnot$mamirefo(ballena)\\
+		\item ( $\lnot$sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) )\\
+		$\land$ ( vivir(mamifero2, Agua $\land$ nada(mamifero2) )\\
+		$\land$ ($\lnot$sangreFria(ballena) )) $\land$ $\lnot$mamirefo(ballena)\\
+		\item $\lnot$sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) \\
+		$\land$ vivir(mamifero2, Agua $\land$ nada(mamifero2) \\
+		$\land$ $\lnot$sangreFria(ballena) $\land$ $\lnot$mamirefo(ballena)\\
+		\item $\lnot$sangreFria(mamifero1) $\land$ $\lnot$sangreFria(ballena) $\land$ sangreFria(pez) \\
+		$\land$ vivir(pez, Agua) $\land$ vivir(mamifero2, Agua)\\
+		$\land$ nada(mamifero2) $\land$ $\lnot$mamirefo(ballena)\\
+	\end{itemize}
 	\item Si el reloj estaba adelantado, Juan llegóantes de las diez y vio partir el coche de Andrés. Si Andrés   dice   la   verdad   entonces,   Juan   no   vio   partir   el   coche   de   Andrés.   O   Andrés   dice   laverdad o estaba en el edificio en el momento del crimen. El reloj estaba adelantado. Por tanto,Andrés estaba en el edificio en el momento del crimen.
-
 	\item Pepito  recibe   regalos  en  su  cumpleaños  y  en  su  santo.  Pepito   no  recibióregalos   ayer.  Portanto, ayer no fue su cumpleaños ni su santo.
-
 	\item Marta va al cine siempre que tiene dinero o alguien le invita, y sólo en esos
 	casos. Marta fuéayer al cine y nadie le invitó. Por tanto, Marta tenía dinero ayer.
-
 	\item Uno es adorable si y sólo si todo el mundo lo ama. Pepito no es adorable. Por tanto, alguien noama a Pepito.
 
 \end{enumerate}
@@ -187,13 +225,15 @@ Dados los siguientes literales, indica si se pueden unificar o no:
 \subsection{Resolución}
 \begin{enumerate}
 	\item p(x1,a) y p(b,x2)
-	\\asd
+	\\x1=b, x2=a
 	\item p(x1,y1,f(x1,y1)) y p(x2,y2,g(a,b))
-
+	\\no se puede (dos valores distintos para la misma variable)
 	\item p(x1,a,f(a,b)) y p(c,y2,f(x2,b))
-
-	\item p(f(a),g(x1)) y p(y2,y2)e)p(f(a),g(x1)) y p(y2,z2)
-
+	\\x1=c, y2=a, x2=a
+	\item p(f(a),g(x1)) y p(y2,y2)
+	\\no se puede (dos valores distintos para la misma variable)
+	\item p(f(a),g(x1)) y p(y2,z2)
+	\\no se puede (se tendria que asignar que z2=g(x1))
 \end{enumerate}
 
 % \vspace*{\fill} %se va al final de  la pagina
