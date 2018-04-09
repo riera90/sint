@@ -1,0 +1,38 @@
+(deftemplate esfera
+	(slot nombre)
+	(slot diametro)
+)
+
+(deftemplate objeto
+	(slot nombre)
+	(slot altura)
+)
+
+(deffacts init_s
+	(esfera (nombre sol) (diametro 1748483330400000))
+	(esfera (nombre anillo) (diametro 1748483330400000))
+	(objeto (nombre papel) (altura 0.000000001))
+	(objeto (nombre mano) (altura 0.02))
+	(objeto (nombre pelota) (altura 0.1))
+	(aumentar 1)
+)
+
+(defrule aumentar_tamaño_anillo
+	?i1<-(aumentar ?distancia)
+	?i2<-(esfera (nombre anillo) (diametro ?radio))
+	=>
+	(retract ?i1)
+	(retract ?i2)
+	(assert
+		(esfera (nombre anillo) (diametro (+ ?radio ?distancia )))
+	)
+)
+
+(defrule entra
+	(esfera (nombre sol)(diametro ?dsol))
+	(esfera (nombre anillo)(diametro ?danillo))
+	(objeto (nombre ?n) (altura ?h))
+	(test (< ?h (- (/ ?danillo 6.28318) (/ ?dsol 6.28318)) ))
+	=>
+	(printout t "el objeto "?n" pasa entre el sol y el anillo" crlf )
+)

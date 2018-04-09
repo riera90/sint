@@ -4,237 +4,95 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{enumerate}
-\usepackage{dirtree}
-\usepackage{fancyhdr}
-\usepackage{listings}
-\usepackage{scrextend}
-\pagestyle{fancy}
+\graphicspath{/mnt/data_1/code/asignaturas/sint/practicas/pr7}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
-\title{Inferencia con Lógica de Predicados\\(6ª semana)}
+\title{Sistemas Basados en Reglas\\(7ª semana)}
 \begin{document}
 \maketitle
 \pagebreak
 \tableofcontents
 \pagebreak
 
+\section{ejercicio 1}
+\subsection{enunciado}
+Sea el siguiente conjunto de reglas:\\
+\vspace{0.5cm}\\
+R1: Si h8 y h6 y h5 entonces h4 \\
+R2: Si h6 y h3 entonces h9 \\
+R3: Si h7 y h4 entonces h9 \\
+R4: Si h8 entonces h1 \\
+R5: Si h6 entonces h5 \\
+R6: Si h9 y h1 entonces h2 \\
+R7: Si h7 entonces h6 \\
+R8: Si h1 y h7 entonces h9 \\
+R9: Si h1 y h8 entonces h6 \\
+\vspace{0.5cm}\\
+La base de hechos inicial contiene h7 y h8. \\
+\vspace{0.5cm}\\
+Aplica encadenamiento hacia adelante suponiendo que se utiliza el principio de refracción y el control del razonamiento da mayor prioridad a la regla\\
+a) con menor sub índice, y\\
+b) con más condiciones en su antecedente (en caso de empate, tiene preferencia la regla de menor índice). Para cada iteraci ó n del sistema, indica las reglas que est á n activas y los hechos que la activan, la regla que se dispara y la base de hechos resultante.
+\subsection{resolucion}
+Sean las reglas que se satisfacen (inicialmente)
+\vspace{0.5cm}\\
+R4: Si h8 entonces h1 \\
+R7: Si h7 entonces h6 \\
+\vspace{0.5cm}\\
+De estos sacamos la activación de 'h1' y 'h6'\\
+Teneiendo activos los hechos h1 ,h6 ,h7 y h8
+\vspace{0.5cm}\\
+R5: Si h6 entonces h5 \\
+R8: Si h1 y h7 entonces h9 \\
+R9: Si h1 y h8 entonces h6 \\
+\vspace{0.5cm}\\
+Sacamos los hechos h5 y h9\\
+obteniendo los hechos h1, h5, h6 ,h7, h8 y h9
+\vspace{0.5cm}\\
+R1: Si h8 y h6 y h5 entonces h4 \\
+R6: Si h9 y h1 entonces h2 \\
+\vspace{0.5cm}\\
+activandose h4 y h2\\
+quedando h1, h2, h4, h5, h6 ,h7, h8 y h9\\
+\vspace{0.5cm}\\
+Quedando en una situación estable, quedando activas todas las reglas menos R3.\\
+Respecto a los hechos, se generan todos menos el h3.\\
 
-\section{ejercicio 9.4}
-\subsection{Enunciado}
-For each pairofatomicsentences, give the most general unifierif  it exist:
-\begin{enumerate}
-	\item P(A,B,B),P(x,y,z).
-	\item Q(Y,G(A,B)),Q(G(x,x)y).
-	\item Older(Father(y),Y),Older(Father(x),John).
-	\item Knows(Father(y),Y),Knows(x,X).
-\end{enumerate}
-\subsection{Resolución}
-\begin{itemize}
-	\item	P(A,B,B),P(x,y,z).
-	\begin{itemize}
-		\item P(A,B,B) $\land$ P(x,y,z).
-		\item P(A,B,B)\\P(x,y,z)
-	\end{itemize}
-	\item Q(Y,G(A,B)),Q(G(x,x)y).
-	\begin{itemize}
-		\item Q(Y,G(A,B)) $\land$ Q(G(x,x)y).
-		\item Q(Y,G(A,B))\\Q(G(x,x)y).
-	\end{itemize}
-\end{itemize}
+\section{ejercicio 3}
+\subsection{enunciado}
+El siguiente SBR utiliza el axioma del mundo cerrado. Pero, ¿debiera utilizar dependencia reversible o irreversible entre las diferentes condiciones del antecedente?\\
+SI hayCorriente Y sePulsaBotón ENTONCES ordenadorEncendido;
+\subsection{resolución}
+El proceso seria Reversible, ya que dependiendo de que el ordenador este encendido o apagado (antecedente) el pc se apagará o encenderá.
 
-
-\vspace{1cm}
 \section{ejercicio 6}
-\subsection{Enunciado}
-Expresa   en   sentencias   de   lógica   de   predicados   las   siguientes   ideas   y   comprueba   que los razonamientos son correctos utilizando la prueba por refutación y el principio de resolución.
-\subsection{Resolución}
-\begin{enumerate}
-	\item Todas las personas no son altas. Todos los españoles son personas. Por tanto, todos los españoles no son altos.
-	\begin{itemize}
-		\item $\lnot$ $\forall$ persona $\rightarrow$ alta(persona) $\land$ $\forall$ español esPersona(español)
-		\item simplificando a la forma normal:
-		\item $\exists$ $\lnot$persona $\rightarrow$ alta(persona) $\land$ $\forall$ español esPersona(español)
-		\item ($\exists$ persona $\lor$ alta(persona)) $\land$ $\forall$ español esPersona(español)
-		\item (Persona $\lor$ alta(Persona)) $\land$ $\forall$ español esPersona(español)
-		\item (Persona $\lor$ alta(Persona)) $\land$ español esPersona(español)
-		\item (Persona $\lor$ alta(Persona)), español esPersona(español)
-		\item por lo tento el razoniento es correcto
-	\end{itemize}
-	\item Todos los mamíferos tienen pulmones. Losárboles no tienen pulmones. Por tanto, losárbolesno son mamíferos.
-	\begin{itemize}
-		\item $\forall$ mamiferos, arboles (pulmones(mamiferos) $\land$ $\lnot$pulmones(arboles)) $\rightarrow$ $\lnot$mamiferos(arboles)
-		\item simplificando a la forma normal:
-		\item $\forall$ mamiferos, arboles $\lnot$(pulmones(mamiferos) $\land$ $\lnot$pulmones(arboles)) $\lor$ $\lnot$mamiferos(arboles)
-		\item $\forall$ mamiferos, arboles ($\lnot$pulmones(mamiferos) $\lor$ pulmones(arboles)) $\lor$ $\lnot$mamiferos(arboles)
-		\item ($\lnot$pulmones(mamiferos) $\lor$ pulmones(arboles)) $\lor$ $\lnot$mamiferos(arboles)
-		\item Reducimos a lo absurdo
-		\item $\lnot$(($\lnot$pulmones(mamiferos) $\lor$ pulmones(arboles)) $\lor$ $\lnot$mamiferos(arboles))
-		\item ($\lnot$($\lnot$pulmones(mamiferos) $\lor$ pulmones(arboles)) $\land$ mamiferos(arboles))
-		\item (pulmones(mamiferos) $\land$ $\lnot$pulmones(arboles)) $\land$ mamiferos(arboles))
-		\item pulmones(mamiferos) $\land$ $\lnot$pulmones(arboles) $\land$ mamiferos(arboles))
-		\item Nos da contradicción asi que el enunciado es valido
-	\end{itemize}
-	\item Los planetas giran alrededor del Sol. La Tierra es un planeta. Por tanto, la Tierra giraalrededor del Sol.
-	\begin{itemize}
-		\item $\forall$ planeta (girar(planeta, Sol) $\land$ planeta(Tierra)) $\rightarrow$ girar(Tierra, Sol)
-		\item simplificando a la forma normal:
-		\item $\lnot$$\forall$ planeta (girar(planeta, Sol) $\land$ planeta(Tierra)) $\lor$ girar(Tierra, Sol)
-		\item $\exists$ planeta ($\lnot$girar(planeta, Sol) $\lor$ $\lnot$planeta(Tierra)) $\lor$ girar(Tierra, Sol)
-		\item ($\lnot$girar(Planeta, Sol) $\lor$ $\lnot$planeta(Tierra)) $\lor$ girar(Tierra, Sol)
-		\item $\lnot$girar(Planeta, Sol) $\lor$ $\lnot$planeta(Tierra) $\lor$ girar(Tierra, Sol)
-		\item reducimos a lo absurdo
-		\item $\lnot$($\lnot$girar(Planeta, Sol) $\lor$ $\lnot$planeta(Tierra) $\lor$ girar(Tierra, Sol))
-		\item ($\lnot$($\lnot$girar(Planeta, Sol) $\lor$ planeta(Tierra)) $\land$ $\lnot$girar(Tierra, Sol)
-		\item ((girar(Planeta, Sol) $\land$ $\lnot$planeta(Tierra)) $\land$ $\lnot$girar(Tierra, Sol)
-		\item girar(Planeta, Sol) $\land$ $\lnot$planeta(Tierra) $\land$ $\lnot$girar(Tierra, Sol)
-	\end{itemize}
-	\item Todos   los   marineros   aman   el   mar.   Algunos   cordobeses   son   marineros.   Por   tanto,   algunoscordobeses aman el mar.
-	\begin{itemize}
-		\item $\forall$ mamiferos aman(mamiferos, Mar) $\land$ $\exists$ cordobés marinero(cordobés) $\rightarrow$ aman(cordobes, Mar)
-		\item simplificando a la forma normal:
-		\item $\forall$ mamiferos $\exists$ cordobés (aman(mamiferos, Mar) $\land$ marinero(cordobés)) $\rightarrow$ aman(cordobes, Mar)
-		\item $\forall$ mamiferos (aman(mamiferos, Mar) $\land$ marinero(Cordobés)) $\rightarrow$ aman(Cordobes, Mar)
-		\item aman(mamiferos Mar) $\land$ marinero(Cordobés) $\rightarrow$ aman(Cordobes, Mar)
-		\item $\lnot$aman(mamiferos, Mar) $\lor$ $\lnot$marinero(Cordobés) $\lor$ aman(Cordobes, Mar)
-		\item aplicamos reduccion a lo absurdo
-		\item $\lnot$(($\lnot$aman(mamiferos, Mar) $\lor$ $\lnot$marinero(Cordobés)) $\lor$ aman(Cordobes, Mar))
-		\item $\lnot$($\lnot$aman(mamiferos, Mar) $\lor$ $\lnot$marinero(Cordobés)) $\land$ $\lnot$aman(Cordobes, Mar)
-		\item (aman(mamiferos, Mar) $\land$ marinero(Cordobés)) $\land$ $\lnot$aman(Cordobes, Mar)
-		\item aman(mamiferos, Mar) $\land$ marinero(Cordobés) $\land$ $\lnot$aman(Cordobes, Mar)
-		\item La conclusion no es conclusiva
-	\end{itemize}
-	\item Los ingleses hablan inglés. Los españoles no son ingleses. Algunos españoles hablan inglés. Por tanto, algunos que hablan inglés no son ingleses.
-	\begin{itemize}
-		\item $\forall$ ingles $\exists$ español $\lnot$habla(ingles, Ingles) $\lor$ $\lnot$habla(español, Español) $\rightarrow$ habla(español, ingles)
-		\item simplificando a la forma normal:
-		\item $\forall$ ingles $\exists$ español $\lnot$habla(ingles, Ingles) $\lor$ $\lnot$habla(español, Español) $\lor$ habla(español, ingles)
-		\item $\forall$ ingles $\lnot$habla(ingles, Ingles) $\lor$ $\lnot$habla(Español, Español) $\lor$ habla(Español, ingles)
-		\item $\lnot$habla(ingles, Ingles) $\lor$ $\lnot$habla(Español, Español) $\lor$ habla(Español, ingles)
-		\item Aplicamos reducción a lo absurdo.
-		\item habla(ingles, Ingles) $\land$ habla(Español, Español) $\land$ $\lnot$habla(Español, ingles)
-	\end{itemize}
-	\item Ningún mamífero tiene sangre fría. Los peces tienen sangre fría. Los peces viven en el agua ynadan. Algunos mamíferos viven en el agua y nadan. Las ballenas tienen sangre caliente. Portanto, las ballenas son mamíferos.
-	\begin{itemize}
-		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena ( sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) ) $\land$ ( vivir(mamifero2, Agua) $\land$ nada(mamifero2) ) $\land$ ( $\lnot$sangreFria(ballena) ) $\rightarrow$ mamirefo(ballena)
-		\item simplificando a la forma normal:
-		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
-		$\lnot$(( sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) ) $\land$ ( vivir(mamifero2, Agua) $\land$ nada(mamifero2) ) $\land$ ( $\lnot$sangreFria(ballena) )) $\lor$ mamirefo(ballena)
-		\item $\lnot$$\exists$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
-		( $\lnot$sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
-		$\lor$ ( sangreFria(ballena) ))\\
-		$\lor$ mamirefo(ballena)\\
-		\item $\forall$ mamifero1 $\exists$ mamifero2 $\forall$ pez $\forall$ ballena\\
-		( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
-		$\lor$ ( sangreFria(ballena) ))\\
-		$\lor$ mamirefo(ballena)\\
-		\item ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\lor$ ($\lnot$ vivir(mamifero2, Agua) $\lor$ $\lnot$nada(mamifero2) )\\
-		$\lor$ ( sangreFria(ballena) ))\\
-		$\lor$ mamirefo(ballena)\\
-		\item ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\lor$ ($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
-		$\lor$ ( sangreFria(ballena) ))\\
-		$\lor$ mamirefo(ballena)\\
-		\item Aplicamos reducción a lo absurdo.
-		\item $\lnot$( ( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\lor$ ($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
-		$\lor$ ( sangreFria(ballena) ))\\
-		$\lor$ mamirefo(ballena) )\\
-		\item $\lnot$( sangreFria(mamifero1) $\lor$ $\lnot$sangreFria(pez) $\lor$ $\lnot$vivir(pez, Agua) )\\
-		$\land$ $\lnot$($\lnot$ vivir(mamifero2, Agua $\lor$ $\lnot$nada(mamifero2) )\\
-		$\land$ $\lnot$( sangreFria(ballena) ))\\
-		$\land$ $\lnot$mamirefo(ballena)\\
-		\item ( $\lnot$sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) )\\
-		$\land$ ( vivir(mamifero2, Agua $\land$ nada(mamifero2) )\\
-		$\land$ ($\lnot$sangreFria(ballena) )) $\land$ $\lnot$mamirefo(ballena)\\
-		\item $\lnot$sangreFria(mamifero1) $\land$ sangreFria(pez) $\land$ vivir(pez, Agua) \\
-		$\land$ vivir(mamifero2, Agua $\land$ nada(mamifero2) \\
-		$\land$ $\lnot$sangreFria(ballena) $\land$ $\lnot$mamirefo(ballena)\\
-		\item $\lnot$sangreFria(mamifero1) $\land$ $\lnot$sangreFria(ballena) $\land$ sangreFria(pez) \\
-		$\land$ vivir(pez, Agua) $\land$ vivir(mamifero2, Agua)\\
-		$\land$ nada(mamifero2) $\land$ $\lnot$mamirefo(ballena)\\
-	\end{itemize}
-	\item Si el reloj estaba adelantado, Juan llegóantes de las diez y vio partir el coche de Andrés. Si Andrés   dice   la   verdad   entonces,   Juan   no   vio   partir   el   coche   de   Andrés.   O   Andrés   dice   laverdad o estaba en el edificio en el momento del crimen. El reloj estaba adelantado. Por tanto,Andrés estaba en el edificio en el momento del crimen.
-	\item Pepito  recibe   regalos  en  su  cumpleaños  y  en  su  santo.  Pepito   no  recibióregalos   ayer.  Portanto, ayer no fue su cumpleaños ni su santo.
-	\item Marta va al cine siempre que tiene dinero o alguien le invita, y sólo en esos
-	casos. Marta fuéayer al cine y nadie le invitó. Por tanto, Marta tenía dinero ayer.
-	\item Uno es adorable si y sólo si todo el mundo lo ama. Pepito no es adorable. Por tanto, alguien noama a Pepito.
-
-\end{enumerate}
+\subsection{enunciado}
+Sean el siguiente conjunto de reglas que se ejecutan en un SBR con encadenamiento haciaadelante, axioma de mundo cerrado, principio de refracción, variables multivaluadas, y basede hechos inicial.\\
+{H1: x3=20, H2: x2=5, H3: x1=0}\\
+R1: SI x2 < 50 Y x2 > 0 Y x3 > 15 Y conocido(x1) \\
+\tab ENTONCES afirmar(x1= 2*x2 + x1)\\
+R2: SI x2 < 15 Y x1 = 0 ENTONCES afirmar(x1= 3*x2)\\
+Indica los valores de la variable x1 en las dos siguientes iteraciones, cuando el control del razonamiento utilizado da prioridad a las reglas de menoríndice, o utiliza el principio deespecificidad, o utiliza el principio de actualidad.
+\subsection{resolución}
+\begin{tabular}{ c  c  c  c}
+	iteracion & prioridad de menor indice & especificidad & Actualidad\\
+	\hline
+	1 & (H1)X1=10 & ? & ? \\
+	2 & (H1)X1=20 & ? & ? \\
+\end{tabular}\\
+\pagebreak
+\section{ejercicio 5}
+\subsection{enunciado}
+Resuelve el siguiente problema diseñando un Sistema Basado en Reglas que pueda darrespuesta a la pregunta Paradoja de la esfera:\\
+Sea una esfera perfecta cuyo radio es diez veces mayor al del sol.\\
+Sea una cinta que rodea a la esfera por su ecuador sin dejar oquedad en ninguno de sus tramos.\\
+Supongamos que aumentamos la longitud de la cinta exactamente un metro, y que
+la oquedad que se produce entre la cinta y la esfera se distribuye uniformemente por toda ella.\\
+Se pregunta: ¿cuáles de los siguientes objetos pueden pasar, sin necesidad de tirar de la cinta de ninguno de sus tramos, por la oquedad entre la ella y la esfera?, ¿nada, un folio de papel, una mano, una pelota de béisbol?\\
+\vspace{0.5cm}\\
+\includegraphics[scale=0.45]{code.png}
 
 
-\vspace{1cm}
-\section{ejercicio 7}
-\subsection{Enunciado}
-Pasa a forma normal clausulada las siguientes fórmulas:
-\subsection{Resolución}
-\begin{enumerate}
-	\item $\exists$ x $\exists$ y p(x, y)
-	\begin{itemize}
-		\item p(X, Y)
-	\end{itemize}
-	\item $\forall$ x $\exists$ y p(x, y)
-	\begin{itemize}
-		\item $\forall$ x p(x, Y)
-		\item p(x, Y)
-	\end{itemize}
-	\item $\exists$ x $\forall$ y p(x, y)
-	\begin{itemize}
-		\item $\forall$ y p(X, y)
-		\item p(X, y)
-	\end{itemize}
-	\item $\forall$ x $\forall$ y p(x, y)
-	\begin{itemize}
-		\item p(x, y)
-	\end{itemize}
-	\item $\forall$ x $\exists$ y (p(x,y) $\rightarrow$ p(y,x))
-	\begin{itemize}
-		\item $\forall$ x $\exists$ y $\lnot$(p(x,y) $\lor$ p(y,x))
-		\item $\forall$ x $\lnot$p(x,Y) $\lor$ p(Y,x)
-		\item $\lnot$p(x,Y) $\lor$ p(Y,x)
-	\end{itemize}
-	\item $\forall$ x ($\exists$ y p(y,x) $\rightarrow$ $\forall$ x $\exists$ z $\lnot$ q(x, z))
-	\begin{itemize}
-		\item $\forall$ x (p(Y,x) $\rightarrow$ $\forall$ x $\lnot$ q(x, Z))
-		\item $\forall$ x0 (p(Y,x0) $\rightarrow$ $\forall$ x1 $\lnot$ q(x1, Z))
-		\item $\forall$ x0 $\lnot$(p(Y,x0) $\lor$ $\forall$ x1 $\lnot$ q(x1, Z))
-		\item $\lnot$(p(Y,x0) $\lor$ $\lnot$ q(x1, Z))
-		\item $\lnot$p(Y,x0) $\land$ q(x1, Z)
-		\item $\lnot$p(Y,x0), q(x1, Z)
-	\end{itemize}
-	\item ($\forall$ x p(x)) $\rightarrow$ [ $\forall$ x $\forall$ y $\exists$ z (q(x, y, z) $\rightarrow$ r(x, y, z, u))]
-	\begin{itemize}
-		\item ($\forall$ x0 p(x0)) $\rightarrow$ [ $\forall$ x1 $\forall$ y $\exists$ z (q(x1, y, z) $\rightarrow$ r(x1, y, z, u))]
-		\item ($\forall$ x0 $\lnot$p(x0)) $\lor$ $\lnot$[ $\forall$ x1 $\forall$ y $\exists$ z $\lnot$(q(x1, y, Z) $\lor$ r(x1, y, Z, u))]
-		\item ($\forall$ x0 $\lnot$p(x0)) $\lor$ $\lnot$[ $\forall$ x1 $\forall$ y $\lnot$(q(x1, y, Z) $\lor$ r(x1, y, Z, u))]
-		\item ($\lnot$p(x0)) $\lor$ $\lnot$[ $\lnot$(q(x1, y, Z) $\lor$ r(x1, y, Z, u))]
-		\item ($\lnot$p(x0)) $\lor$ [ (q(x1, y, Z) $\land$ $\lnot$r(x1, y, Z, u))]
-		\item $\lnot$p(x0) $\lor$ [ q(x1, y, Z) $\land$ $\lnot$r(x1, y, Z, u)]
-		\item ($\lnot$p(x0) $\lor$ q(x1, y, Z)) $\land$ ($\lnot$p(x0) $\lor$ $\lnot$r(x1, y, Z, u))
-		\item $\lnot$p(x0) $\lor$ q(x1, y, Z), $\lnot$p(x0) $\lor$ $\lnot$r(x1, y, Z, u)
-	\end{itemize}
 
-\end{enumerate}
-
-
-\vspace{1cm}
-\section{ejercicio 8}
-\subsection{Enunciado}
-Dados los siguientes literales, indica si se pueden unificar o no:
-\subsection{Resolución}
-\begin{enumerate}
-	\item p(x1,a) y p(b,x2)
-	\\x1=b, x2=a
-	\item p(x1,y1,f(x1,y1)) y p(x2,y2,g(a,b))
-	\\no se puede (dos valores distintos para la misma variable)
-	\item p(x1,a,f(a,b)) y p(c,y2,f(x2,b))
-	\\x1=c, y2=a, x2=a
-	\item p(f(a),g(x1)) y p(y2,y2)
-	\\no se puede (dos valores distintos para la misma variable)
-	\item p(f(a),g(x1)) y p(y2,z2)
-	\\no se puede (se tendria que asignar que z2=g(x1))
-\end{enumerate}
 
 % \vspace*{\fill} %se va al final de  la pagina
 % \raggedleft Documento escrito en \LaTeX{}
