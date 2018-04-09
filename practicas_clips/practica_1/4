@@ -1,0 +1,37 @@
+(deffacts initial-fact-pers
+	(dato 1)
+	(dato 2)
+	(dato azul)
+	(dato "saludos")
+)
+
+
+(defrule init_
+	(not
+		(or
+			(all_datos)
+			(all_datos $?var)
+		)
+	)
+	=>
+	(assert
+		(all_datos)
+	)
+)
+
+(defrule copy
+	(dato ?var)
+	=>
+	(assert
+		(dato_ ?var)
+	)
+)
+
+(defrule recopilar-datos
+	?f1 <- (dato_ ?var1)
+	?f2 <- (all_datos $?var2)
+	=>
+	(retract ?f2)
+	(retract ?f1)
+	(assert (all_datos $?var2 ?var1))
+)
