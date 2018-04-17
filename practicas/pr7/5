@@ -14,6 +14,7 @@
 	(objeto (nombre papel) (altura 0.000000001))
 	(objeto (nombre mano) (altura 0.02))
 	(objeto (nombre pelota) (altura 0.1))
+	(objeto (nombre baloncesto) (altura 0.3))
 	(aumentar 1)
 )
 
