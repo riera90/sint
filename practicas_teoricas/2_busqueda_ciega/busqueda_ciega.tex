@@ -1,0 +1,246 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc} %Codificacion utf-8
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tikz}     % graphs!
+\usepackage{listings} % code!
+\usepackage{multirow} % Required for multirows
+\usepackage[spanish, activeacute]{babel} %Definir idioma español
+% \usepackage[margin=3cm]{geometry}
+\setlength{\headheight}{15pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\pagestyle{fancy}
+
+\lhead{Técnicas de Búsqueda Ciega}
+\rfoot{Página \thepage}
+\lfoot{Sistemas Inteligentes}
+\cfoot{}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\title{Técnicas de Búsqueda Ciega\\(2ª semana)}
+\author{}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Las 8 reinas}
+\subsection{Enunciado}
+La formulación medianamente formal (el lenguaje natural no es formal) de los estados, los estados iniciales, los estados objetivo y las reglas de transición de alguno de los apartados, a tu elección, del ejercicio 2 de la relación de ejercicios de búsqueda.
+\subsection{Resolución}
+\paragraph{}
+Estudiaremos el puzle de las 8 reinas.
+\subsubsection{Representación de la información}
+Representaremos las posiciones de las reinas en un vector de dimensión 8, cuyo valores serán enteros entre 1 y 8, estos representan la posición de la reina en un eje y su indice su posición en el otro.
+\paragraph{}
+Por ejemplo, el vector (1,3,5...) significa que la primera reina está en el cuadro (1,1), la segunda en el (2,3), la tercera en el (3,5)...
+\subsubsection{Reglas aplicadas}
+Las reglas del juego son las siguientes:\\
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.25]{figures/reina.jpeg}\\
+  \caption{Posibles movimientos de una reina en el tablero.}
+  \label{fig:movimientos_reina}
+\end{figure}
+\pagebreak
+\begin{itemize}
+  \item Se coloca una reina cada turno
+  \item La nueva reina no puede estar en una posición en la cual no sea atacada por ninguna otra reina, esto se puede dividir en dos partes:\\
+  \begin{itemize}
+    \item La reina no puede estar al lado de otra reina en las coordenadas x e y, es decir, no puede existir dos números iguales seguidos.
+    \item La reina no puede estar en la diagonal de otra reina, esto  lo podemos comprobar con la siguientes formulas
+    \begin{equation}
+      i-j=k-l
+    \end{equation}
+    \begin{equation}
+      j-l=i-k
+    \end{equation}
+    \paragraph{}
+    Donde una reina está en las coordenadas (i,j) y la segunda en las coordenadas (j,k)
+    \paragraph{}
+    Si estas equaciones se cumplen, la reina está en la diagonal de otra reina, siendo la primera para la diagonal de pendiente negativa y la segunda la de pendiente positiva.
+  \end{itemize}
+\end{itemize}
+
+
+\pagebreak
+
+
+
+\section{Busquedas}
+\subsection{Enunciado}
+El ejercicio 3.8 del libro $"$Artificial Intelligence. A Modern Approach$"$, Segunda Edición, de Stuart Russel y Peter Norvig (descrito a continuación). Para este ejercicio, te sugiero que dibujes los estados generados, con enlaces entre los estados padre y los hijos, y que junto a cada estado pongas entre paréntesis la iteración del proceso de búsqueda en que dicho estado se generó.
+\paragraph{}
+El ejercicio es el siguiente:
+\paragraph{}
+Consider a state space where the start state is number 1 and the successor function for
+state n returns two states, numbers 2n and 2n + 1.
+\paragraph{}
+Se considera el espacio de estados del 1 al 15.
+
+
+\begin{enumerate}
+  \item ¿En qué orden se visitan los estados si el estado objetivo fuese el 11 y la técnica de búsqueda fuese: a) anchura; b) profundidad; c) profundidad con límite = 3; d) profundidad iterativa?
+  \item ¿Tiene sentido aplicar la búsqueda bidireccional? ¿Por qué?
+  \item ¿Se puede resolver este problema sin realizar la búsqueda sobre el árbol?
+\end{enumerate}
+
+
+\subsection{Resolución}
+\subsubsection{Aplicación de distintas búsquedas}
+\paragraph{a)}Búsqueda en anchura:
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.6}{\input{figures/anchura}}
+	\caption{Diagrama búsqueda en anchura.}
+	\label{fig:busqueda_anchura}
+\end{figure}
+\pagebreak
+
+\paragraph{b)}Busqueda en profundidad:\\
+\tab Se ha escogido expandir primero por 2n y después por 2n+1
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/profundidad}}
+	\caption{Diagrama búsqueda en profundidad.}
+	\label{fig:busqueda_profundidad}
+\end{figure}
+
+\paragraph{c)}Busqueda en profundidad limitada a profundidad 3:\\
+\tab Se ha escogido expandir primero por 2n y después por 2n+1
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/profundidad_limitada}}
+	\caption{Diagrama búsqueda en profundidad limitada a 3.}
+	\label{fig:busqueda_profundidad_limitada}
+\end{figure}
+\paragraph{}
+En este caso la solución es la misma que en el caso anterior puesto que el nivel máximo que se puede alcanzar en el árbol específico a este problema es 3, ya que al multiplicar ocho por dos el resultado es mayor que quince, limite superior del dominio del problema.
+\pagebreak
+
+\paragraph{c)}Búsqueda en profundidad iterativa:\\
+\tab Se ha escogido expandir primero por 2n y después por 2n+1
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/profundidad_iterativa/1}}
+	\caption{Diagrama búsqueda en profundidad iterativa limite 1.}
+	\label{fig:busqueda_profundidad_iterativa_1}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/profundidad_iterativa/2}}
+	\caption{Diagrama búsqueda en profundidad iterativa limite 2.}
+	\label{fig:busqueda_profundidad_iterativa_2}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/profundidad_iterativa/3}}
+	\caption{Diagrama búsqueda en profundidad iterativa limite 3.}
+	\label{fig:busqueda_profundidad_iterativa_3}
+\end{figure}
+\pagebreak
+
+\subsubsection{Búsqueda bidireccional}
+No, ya que una de las operaciones no daría un elemento valido del dominio del problema, por ejemplo, si al 11 lo dividimos entre 2, el resultado es 5,5, el cual esta fuera del dominio del problema.
+
+\subsubsection{Otros métodos de resolución}
+Si, siempre se puede probar a aplicar las acciones aleatoriamente, pero no es muy recomendado en este tipo de problemas.
+
+
+\pagebreak
+
+
+
+\section{Coste de las búsquedas}
+\subsection{Enunciado}
+Consideremos un árbol finito de profundidad d con un factor de ramificación b (un sólo nodo raíz, con profundidad 0, y b sucesores por cada nodo, etc.). Supongamos que el nodo objetivo menos profundo se encuentra a una profundidad g $\leq$ d.
+\begin{enumerate}
+  \item ¿Cuál es el número mínimo de nodos generados por la búsqueda primero en profundidad con una profundidad límite d?. ¿Y el máximo?.
+  \item ¿Cuál es el número mínimo de nodos generados por la búsqueda primero en anchura?.¿Y el máximo?.
+  \item ¿Cuál es el número mínimo de nodos generados por el descenso iterativo?. ¿Y el máximo?. (Considérese que comenzamos con una profundidad límite inicial de 1 y lavamos incrementando una unidad cada iteración).
+\end{enumerate}
+\subsection{Resolución}
+Planteamos entonces el siguiente árbol genérico para la resolución del problema.
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.7}{\input{figures/generic_tree}}
+	\caption{Árbol genérico.}
+	\label{fig:generic_tree}
+\end{figure}
+\pagebreak
+\subsubsection{Nodos generados en búsqueda por profundidad}
+\paragraph{Nodos mínimos generados}
+El caso más favorable seria que nos encontremos el objetivo en la profundidad G de la cola de más a la izquierda. En este caso los nodos  generados serian iguales a G
+\paragraph{Nodos máximos generados}
+El caso contrario seria el más desfavorable, puesto que tendríamos que explorar casi todo el árbol, el numero de nodos generados podría ascender hasta el numero dictado por la siguiente formula.
+\begin{equation}
+  B^{D}-B^{D-G}
+\end{equation}
+\subsubsection{Nodos generados en búsqueda por anchura}
+\paragraph{Nodos mínimos generados}
+El caso más favorable seria en este caso peor que en profundidad y viene definido por la siguiente formula.
+\begin{equation}
+  B^{G-1}+1
+\end{equation}
+siendo el primero del nivel G el nodo objetivo.
+\paragraph{Nodos máximos generados}
+El caso más desfavorable sería cuando se encuentre a la derecha de el nivel G siendo el numero de nodos explorados el siguiente.
+\begin{equation}
+  B^{G}
+\end{equation}
+\subsubsection{Nodos generados en búsqueda por descenso iterativo}
+El descenso iterativo va aumentando el limite de profundidad en consecutivas búsquedas por profundidad, con el objetivo de limitar cada vez menos restrictivamente cuanto puede bajar el algoritmo por el árbol, tratando de mejorar la velocidad en la búsqueda de arboles que pueden tener un gran tamaño.
+\paragraph{Nodos mínimos generados}
+En este caso, el numero mínimo de iteraciones serian, si empezamos en 1 e incrementamos en la unidad, de G-1 iteraciones de la búsqueda en profundidad, a si vez, estas tendrán un numero de nodos explorados cada vez mayor. El número de nodos explorados totales asciende, como mínimo al valor dado por la siguiente formula:
+\begin{equation}
+  (\sum^{G-1}_{i=1}{B^{i}})+1
+\end{equation}
+\paragraph{Nodos máximos generados}
+Por otra parte, en el caso más desfavorable el número de nodos explorados seria:
+\begin{equation}
+  \sum^{G}_{i=1}{B^{i}}
+\end{equation}
+\pagebreak
+
+\section{Sol y Sombra}
+\subsection{Enunciado}
+El ejercicio 3 de la relación de ejercicios de búsqueda, juego Sol y Sombra, pero con un tablero de 5 casillas (dos fichas blancas y dos fichas negras), mediante búsqueda bidireccional con dos anchuras y otro método a tu elección. En este ejercicio, también te sugiero dibujar los estados con enlaces entre los estados padre y los hijos, y que junto a cada estado pongas entre paréntesis la iteración del proceso de búsqueda en que dicho estado se generó.
+\subsection{Resolución}
+\subsubsection{Búsqueda en anchura bidireccional}
+
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.48}{\input{figures/sol_y_sombra/bi_anchura}}
+	\caption{Sol y Sombra por busqueda por anchura bidireccional.}
+	\label{fig:sol_y_sombra_anchura_bi}
+\end{figure}
+\pagebreak
+
+\subsubsection{Busqueda en profundidad}
+El orden de prioridad de las acciones son las siguientes:
+\begin{enumerate}
+  \item Mover el sol de la derecha a la derecha
+  \item Mover la luna de la izquierda a la izquierda
+  \item Mover el sol de la izquierda a la derecha
+  \item Mover la luna de la derecha a la izquierda
+\end{enumerate}
+\begin{figure}[hbt]
+  \centering
+	\scalebox{0.55}{\input{figures/sol_y_sombra/profundidad}}
+	\caption{Sol y Sombra por busqueda por profundidad.}
+	\label{fig:sol_y_sombra_profundidad}
+\end{figure}
+
+
+\end{document}
