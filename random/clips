@@ -1,1 +1,0 @@
-(load multiplicador.clp) (reset) (run) (facts)

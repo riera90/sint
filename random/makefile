@@ -1,3 +1,5 @@
+FILE:=multiplicador.clp
+
 .PHONY: target
 target:
-	@echo -e "(load multiplicador.clp)\n(reset)\n(run)\n(facts)" | clips
+	printf "(load $(FILE))\n(reset)\n(run)\n(facts)\n" | clips
