@@ -1,0 +1,127 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc} %Codificacion utf-8
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tikz}     % graphs!
+\usepackage{listings} % code!
+\usepackage{multirow} % Required for multirows
+\usepackage[spanish, activeacute]{babel} %Definir idioma español
+% \usepackage[margin=3cm]{geometry}
+\setlength{\headheight}{15pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+\pagestyle{fancy}
+
+\lhead{Lógica de Predicados}
+\rfoot{Página \thepage}
+\lfoot{Sistemas Inteligentes}
+\cfoot{}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\title{Representación con Lógica de Predicados\\(5ª semana)}
+\author{}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Ejercicio 8.6 del libro}
+\subsection{Enunciado}
+Represent the following sentences in first-order logic, using a consistent vocabulary
+(which you must define):
+\begin{enumerate}
+    \item Some students took French in spring 2001.
+    \item Every student who takes French passes it.
+    \item Only one student took Greek in spring 2001.
+    \item The best score in Greek is always higher than the best score in French.
+    \item Every person who buys a policy is smart.
+    \item No person buys an expensive policy.
+    \item There is an agent who sells policies only to people who are not insured.
+    \item There is a barber who shaves all men in town who do not shave themselves.
+    \item A person born in the UK, each of whose parents is a IJK citizen or a UK resident, is a UK citizen by birth.
+    \item A person born outside the UK, one of whose parents is a UK citizen by birth, is a UK citizen by descent.
+    \item Politicians can fool some of the people all of the time, and they can fool all of the people some of the time, but they can't fool all of the people all of the time.
+\end{enumerate}
+\subsection{Resolución}
+\begin{enumerate}
+    \item $\exists$ s isStudent(s) $\rightarrow$ $\exists$ c tookClases(s, French)
+	\item $\forall$ s isStudent(s) $\land$ $\exists$ c tookClases(s, French) $\rightarrow$ $\exists$ c passClass(s, French)
+	\item $\exists$ s isStudent(s) $\land$ $\exists$ g tookClassOn(s, Greek, spring 2001) $\land$ $\forall$ x x$\neq$s $\neg$tookClassOn(x, Greek, spring 2001)
+	\item $\forall$ c isBestCalificationOfGreek(g) $\land$ $\forall$ f isBestCalificationOfFrench(f) $\rightarrow$ isHigher(g,f)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ l isPolicy(l) $\rightarrow$ $\forall$ buys(p, l) $\rightarrow$ isWhise(p)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ l isPolicy(l) $\land$ isExpensive(p) $\rightarrow$ $\neg$buys(p, l)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ a isAgent(a) $\land$ $\exists$ l isPolicy(l) $\rightarrow$ sells(a, l) $\land$ sellsTo(a,p)
+	\item $\exists$ p isPerson(p) $\land$ $\exists$ b isBarber(b) $\land$ $\exists$ t isTown(t) $\land$ dontShaveHimself(p) $\land$ livesIn(p, t) $\land$ livesIn(b, t) $\rightarrow$ shaves(b, p)
+	\item $\exists$ p1 isPerson(p1) $\land$ $\exists$ p2 isPerson(p2) $\land$ $\exists$ s isPerson(s) $\land$ bornInUK(p1) $\land$ bornInIJK(p2) $\land$ bornInUK(s) $\rightarrow$ haveUKNationalityByBirth(s)
+	\item $\exists$ p1 isPerson(p1) $\land$ $\exists$ p2 isPerson(p2) $\land$ $\exists$ s isPerson(s) $\land$ bornInUK(p1) $\land$ bornInUK(p2) $\rightarrow$ haveUKNationalityByDescent(s)
+	\item $\exists$ Po isPolitician(po) $\land$ $\exists$ Pe isPerson(pe) $\land$ $\forall$ all isPerson(all) $\rightarrow$ ( foolAllOfTheTime(po, pe) $\lor$ foolSomeOfTheTime(po, all) ) $\land$ $\lnot$ foolAllOfTheTime(po, all)
+\end{enumerate}
+
+\section{Ejercicio 8.7 del libro}
+\subsection{Enunciado}
+Represent the sentence $"$All Germans speak the same languages$"$ in predicate calculus.
+Use Speaks (x, 1) , meaning that person x speaks language 1.
+\subsection{Resolución}
+$\forall$ g $\exists$ l Speaks(g, l)
+
+\section{Ejercicio 8.8 del libro}
+\subsection{Eninciado}
+What axiom is needed to infer the fact Female(Laura) given the facts Male(Jim) and
+Spouse(Jim, Laura)?
+\subsection{Resolución}
+Husband(Jim)
+
+\section{Ejercicio 8.9 del libro}
+\subsection{Eninciado}
+Write a general set of facts and axioms to represent ithe assertion "Wellington heard
+about Napoleon's death" and to correctly answer the question "Did Napoleon hear about
+Wellington's death?"
+\subsection{Resolución}
+HeardAbouth(Wallington, stateOf(Napoleon)) $\land$ isDead(Napoleon)
+
+\section{Ejercicio 4 de la relacción}
+\subsection{Enunciado}
+Representa los siguiente hechos con lógica de predicados:
+\begin{itemize}
+    \item Algunas plantas no tienen flores
+    \item Cualquier edificio es habitable
+    \item No hay delito sin causa
+    \item Algunas personas son insoportables
+    \item Existen personas que no comen carne
+    \item No es oro todo lo que reluce
+    \item Ningún asesino es bondadoso
+    \item El que estudia, aprueba
+    \item No todos los animales son racionales
+    \item Existen personas que aman a todo el mundo
+    \item No es verdad que todas las personas no amen a todo el mundo
+\end{itemize}
+\subsection{Resolución}
+\begin{itemize}
+    \item $\exists$ p esPlanta(p) $\land$ $\neg$tiene(p, flores)
+    \item $\forall$ e esEdificio(e) $\rightarrow$ esHabitable(e)
+    \item $\neg$$\exists$ d esDelito(d) $\land$ $\exists$ c esCausa(c) $\land$ esCausaDe(c, d)
+    \item $\exists$ p esPersona(p) $\land$ esInsoportable(p)
+    \item $\exists$ p esPersona(p) $\land$ $ \neg$come(p, carne)
+    \item $\exists$ x reluce(x) $\land$ $\neg$esOro(x)
+    \item $\neg$$\exists$ a esAssesino(a) $\land$ esBondadoso(a)
+    \item $\forall$ x, y estudia(x, y) $\rightarrow$ aprueba(x, y)
+    \item $\neg\forall$ a esAimal(a) $\land$ esRacional(a)
+    \item $\exists$ p esPersona(p) $\land$ $\forall$ all isPersona(all) $\land$ amar(p, all)
+    \item $\neg\forall$ p esPersona(p) $\land$ $\forall$ all isPersona(all) $\land$ $\neg$amar(p, all)
+\end{itemize}
+\pagebreak
+
+
+
+
+\end{document}
